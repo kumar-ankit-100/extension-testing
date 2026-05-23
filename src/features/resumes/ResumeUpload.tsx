@@ -5,7 +5,7 @@ import { useCallback, useRef, useState, type DragEvent } from "react"
 import { cn, generateId } from "~lib/utils"
 import { useResumeStore } from "~stores/resumeStore"
 import type { Resume, ResumeCategory } from "~types"
-import { readFileAsDataUrl, validatePdf } from "~utils/file"
+import { validatePdf } from "~utils/file"
 
 function inferCategory(filename: string): ResumeCategory {
   const lower = filename.toLowerCase()
@@ -35,18 +35,21 @@ export function ResumeUpload() {
       }
       setUploading(true)
       try {
-        const dataUrl = await readFileAsDataUrl(file)
+        // Store METADATA ONLY. Persisting the raw PDF as base64 in
+        // chrome.storage.local would block the popup long enough for Chrome
+        // to close it on large files.
         const resume: Resume = {
           id: generateId(),
           name: file.name,
           category: inferCategory(file.name),
           uploadedAt: new Date().toISOString(),
           size: file.size,
-          dataUrl
+          type: file.type || "application/pdf"
         }
         await addResume(resume)
       } catch (e) {
-        setError("Failed to read file. Please try again.")
+        console.error("[CareerOS] upload failed:", e)
+        setError("Failed to save resume. Please try again.")
       } finally {
         setUploading(false)
       }

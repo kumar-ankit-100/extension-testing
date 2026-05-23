@@ -6,7 +6,7 @@ import { Button } from "~components/ui/button"
 import { Input } from "~components/ui/input"
 import { Label } from "~components/ui/label"
 import { Textarea } from "~components/ui/textarea"
-import { ResumeSelect } from "~features/resumes/ResumeSelect"
+import { ResumeList } from "~features/resumes/ResumeList"
 import { ResumeUpload } from "~features/resumes/ResumeUpload"
 import { useApplicationStore } from "~stores/applicationStore"
 import { useResumeStore } from "~stores/resumeStore"
@@ -123,7 +123,7 @@ export function ApplicationForm() {
             {resumes.length} available
           </span>
         </div>
-        <ResumeSelect
+        <ResumeList
           resumes={resumes}
           selectedId={selectedId}
           isLoading={isLoading}

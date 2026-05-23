@@ -16,6 +16,7 @@ const MOCK_RESUMES: Resume[] = [
     category: "Backend",
     uploadedAt: "2026-04-12T09:00:00.000Z",
     size: 184_320,
+    type: "application/pdf",
     mock: true
   },
   {
@@ -24,6 +25,7 @@ const MOCK_RESUMES: Resume[] = [
     category: "Fullstack",
     uploadedAt: "2026-05-02T17:30:00.000Z",
     size: 212_992,
+    type: "application/pdf",
     mock: true
   },
   {
@@ -32,6 +34,7 @@ const MOCK_RESUMES: Resume[] = [
     category: "ML",
     uploadedAt: "2026-05-18T12:15:00.000Z",
     size: 198_656,
+    type: "application/pdf",
     mock: true
   }
 ]

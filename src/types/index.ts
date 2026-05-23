@@ -13,8 +13,7 @@ export interface Resume {
   category: ResumeCategory
   uploadedAt: string
   size: number
-  /** Base64-encoded PDF content. */
-  dataUrl?: string
+  type: string
   /** True for the seeded mock resumes. */
   mock?: boolean
 }

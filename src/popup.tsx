@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion"
+import { useEffect } from "react"
 
 import { ClerkProvider } from "~auth/ClerkProvider"
 import { SignInScreen } from "~auth/SignInScreen"
@@ -14,8 +15,13 @@ function PopupShell() {
   useTheme()
   const { isLoaded, isSignedIn } = useAuth()
 
+  useEffect(() => {
+    console.log("[CareerOS] popup mounted")
+    return () => console.log("[CareerOS] popup unmounted")
+  }, [])
+
   return (
-    <div className="w-[400px] bg-background text-foreground">
+    <div className="w-[400px] min-h-[500px] max-w-[400px] overflow-x-hidden bg-background text-foreground">
       <AnimatePresence mode="wait">
         {!isLoaded ? (
           <motion.div
